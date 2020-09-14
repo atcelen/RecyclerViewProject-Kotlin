@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/recycler_row_foodNameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Food Name"
+        android:textSize="40sp"
+        android:paddingLeft="15dp"
+        android:paddingTop="3dp"
+        android:gravity="center"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/recycler_row_foodPrice"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="Price"
+        android:textSize="25dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="3dp"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"/>
+
+
+</LinearLayout>
