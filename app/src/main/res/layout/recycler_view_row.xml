@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="310dp"
+    android:background="@drawable/ic_launcher_background"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/recycler_row_foodNameText"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Food Name"
-        android:textSize="40sp"
+        android:layout_height="45dp"
+        android:gravity="center"
         android:paddingLeft="15dp"
         android:paddingTop="3dp"
-        android:gravity="center"/>
+        android:text="Food Name"
+        android:textColor="#000000"
+        android:textSize="40sp" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -27,12 +29,13 @@
         android:id="@+id/recycler_row_foodPrice"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:text="Price"
-        android:textSize="25dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
         android:paddingLeft="15dp"
         android:paddingTop="3dp"
-        android:gravity="center"
-        android:layout_marginBottom="20dp"/>
+        android:text="Price"
+        android:textColor="#FFFFFF"
+        android:textSize="25dp" />
 
 
 </LinearLayout>

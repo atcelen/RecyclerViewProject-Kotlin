@@ -12,9 +12,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.recycler_view_row.*
 
 class MainActivity : AppCompatActivity() {
+
+    // Initializing the class attributes..
     var foodNameList : ArrayList<String> = ArrayList()
     var priceList : ArrayList<Int> = ArrayList()
     var foodImages : ArrayList<Bitmap> = ArrayList()
+    var backgroundImageList : ArrayList<Int> = ArrayList()
 
     var adapter : MenuRecyclerAdapter? = null
 
@@ -23,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Filling the ArrayLists..
         foodNameList.add("Quattro Formaggi")
         foodNameList.add("Ravioli")
         foodNameList.add("Paella")
@@ -41,17 +45,47 @@ class MainActivity : AppCompatActivity() {
         foodImages.add(BitmapFactory.decodeResource(applicationContext.resources, R.drawable.fondue))
         foodImages.add(BitmapFactory.decodeResource(applicationContext.resources, R.drawable.sushi))
 
+        backgroundImageList.add(R.drawable.italy_wallpaper)
+        backgroundImageList.add(R.drawable.italy_wallpaper1)
+        backgroundImageList.add(R.drawable.spain_wallpaper)
+        backgroundImageList.add(R.drawable.switzerland_wallpaper)
+        backgroundImageList.add(R.drawable.japan_wallpaper)
+
+
+
+
+        /*
+            "A LayoutManager is responsible for measuring and positioning item views within a RecyclerView as well as determining the policy for when to recycle item views that are no longer visible to the user.
+            By changing the LayoutManager a RecyclerView can be used to implement a standard vertically scrolling list, a uniform grid, staggered grids, horizontally scrolling collections and more.
+            Several stock layout managers are provided for general use."
+
+            https://developer.android.com/reference/androidx/recyclerview/widget/RecyclerView.LayoutManager
+
+            A LinearLayoutManager is a RecyclerView.LayoutManager implementation which provides similar functionality to ListView.
+         */
         val layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
+        /*
+            "An Adapter object acts as a bridge between an AdapterView and the underlying data for that view.
+            The Adapter provides access to the data items.
+            The Adapter is also responsible for making a View for each item in the data set."
 
-        adapter = MenuRecyclerAdapter(foodNameList, priceList, foodImages)
+            https://developer.android.com/reference/android/widget/Adapter
+         */
+        adapter = MenuRecyclerAdapter(foodNameList, priceList, foodImages, backgroundImageList)
         recyclerView.adapter = adapter
 
+        /*
+            If we come to the Main Activity from the Add Item Activity(we check that by putting in an intent ID),
+            we extract the data put into the intent and add them to the ArrayLists.
+            In the end, we notify the adapter of the data set change so that the recycler view can update itself.
+         */
         val intent : Intent? = intent
         if(intent != null && intent.getStringExtra("intentID") == "intent_from_AddItemActivity") {
             foodNameList.add(intent.getStringExtra("addedFoodName").toString())
             priceList.add(intent.getIntExtra("addedFoodPrice", 0))
 
+            // See "Singleton.kt" for details
             val singleton = Singleton.Selected
             foodImages.add(singleton.selectedImage!!)
 
@@ -62,13 +96,20 @@ class MainActivity : AppCompatActivity() {
 
         
     }
+    //To specify the options menu for an activity, we override "onCreateOptionsMenu()" and "onOptionsItemSelected()"
 
+    /*
+        In the onCreateOptionsMenu() method we inflate our menu resource "add_item" into the "menu" which is provided as a parameter
+     */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val menuInflater = menuInflater
         menuInflater.inflate(R.menu.add_item, menu)
         return super.onCreateOptionsMenu(menu)
     }
-
+    /*
+        The onOptionsItemSelected() method is called when an item from the dropdown menu is selected by the user.
+        In this implementation, we take the user from the Main Activity to the Add Item Activity via an intent
+    */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(item.itemId == R.id.add_food_item) {
             val intent = Intent(this, AddItemActivity::class.java)
