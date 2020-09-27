@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
     var foodNameList : ArrayList<String> = ArrayList()
     var priceList : ArrayList<Int> = ArrayList()
     var foodImages : ArrayList<Bitmap> = ArrayList()
-    var backgroundImageList : ArrayList<Int> = ArrayList()
 
     var adapter : MenuRecyclerAdapter? = null
 
@@ -45,11 +44,6 @@ class MainActivity : AppCompatActivity() {
         foodImages.add(BitmapFactory.decodeResource(applicationContext.resources, R.drawable.fondue))
         foodImages.add(BitmapFactory.decodeResource(applicationContext.resources, R.drawable.sushi))
 
-        backgroundImageList.add(R.drawable.italy_wallpaper)
-        backgroundImageList.add(R.drawable.italy_wallpaper1)
-        backgroundImageList.add(R.drawable.spain_wallpaper)
-        backgroundImageList.add(R.drawable.switzerland_wallpaper)
-        backgroundImageList.add(R.drawable.japan_wallpaper)
 
 
 
@@ -72,7 +66,7 @@ class MainActivity : AppCompatActivity() {
 
             https://developer.android.com/reference/android/widget/Adapter
          */
-        adapter = MenuRecyclerAdapter(foodNameList, priceList, foodImages, backgroundImageList)
+        adapter = MenuRecyclerAdapter(foodNameList, priceList, foodImages)
         recyclerView.adapter = adapter
 
         /*

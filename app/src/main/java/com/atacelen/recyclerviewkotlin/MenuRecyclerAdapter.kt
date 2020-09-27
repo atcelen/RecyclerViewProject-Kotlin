@@ -10,7 +10,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MenuRecyclerAdapter(private val foodNameList : ArrayList<String>, private val priceList : ArrayList<Int>, private val foodImages : ArrayList<Bitmap>, private val backgroundImageList : ArrayList<Int>) : RecyclerView.Adapter<MenuRecyclerAdapter.MenuItemHolder>() {
+class MenuRecyclerAdapter(private val foodNameList : ArrayList<String>, private val priceList : ArrayList<Int>, private val foodImages : ArrayList<Bitmap>) : RecyclerView.Adapter<MenuRecyclerAdapter.MenuItemHolder>() {
 
     /*
      LayoutInflaters are used to instantiate xml files into their corresponding View Objects.
@@ -37,7 +37,7 @@ class MenuRecyclerAdapter(private val foodNameList : ArrayList<String>, private 
         holder.foodNameText?.text = foodNameList[position]
         holder.priceText?.text = priceList[position].toString() + " CHF"
         holder.imageView?.setImageBitmap(foodImages[position])
-        holder.linearLayout?.setBackgroundResource(backgroundImageList.get(position))
+        holder.linearLayout?.setBackgroundResource(R.drawable.box_ui)
     }
 
 
@@ -55,9 +55,9 @@ class MenuRecyclerAdapter(private val foodNameList : ArrayList<String>, private 
 
         // links the attributes with the recycler_view_row items
         init {
-            imageView = view.findViewById(R.id.imageView)
+            imageView = view.findViewById(R.id.recycler_row_imageView)
             foodNameText = view.findViewById(R.id.recycler_row_foodNameText)
-            priceText = view.findViewById(R.id.recycler_row_foodPrice)
+            priceText = view.findViewById(R.id.recycler_row_priceText)
             linearLayout = view.findViewById(R.id.linearLayout)
         }
     }
